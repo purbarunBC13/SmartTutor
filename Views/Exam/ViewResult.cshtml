@@ -1,0 +1,63 @@
+﻿@model SmartTutor.Models.Answer
+
+@{
+    ViewData["Title"] = "View Result";
+}
+@{
+    var questionTexts = ViewBag.QuestionTexts as List<string>;
+    var correctOptions = ViewBag.CorrectOptions as List<string>;
+}
+
+<h1>Exam Result</h1>
+
+<div>
+    <h4>Result Details</h4>
+    <hr />
+    <dl class="row">
+        <!-- Display User Name -->
+        <dt class="col-sm-2">
+            User Name
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.UserName
+        </dd>
+
+        <!-- Display Exam Title -->
+        <dt class="col-sm-2">
+            Exam Title
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.ExamTitle
+        </dd>
+
+        @for (int i = 0; i < questionTexts.Count; i++)
+        {
+            <dt class="col-sm-2">
+                Question:
+            </dt>
+            <dd class="col-sm-10">
+                @questionTexts[i]
+            </dd>
+            <dt class="col-sm-2">
+                Correct Option:
+            </dt>
+            <dd class="col-sm-10">
+                @correctOptions[i]
+            </dd>
+
+        }
+
+        <!-- Display Score -->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Score)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Score)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AnswerId }) |
+    <a asp-action="Index">Back to List</a>
+</div>

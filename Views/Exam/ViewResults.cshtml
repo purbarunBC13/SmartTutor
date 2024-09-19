@@ -1,0 +1,45 @@
+﻿@model IEnumerable<SmartTutor.Models.Answer>
+
+@{
+    ViewData["Title"] = "ViewResults";
+}
+
+<h1>ViewResults</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               User Name
+            </th>
+            <th>
+                Exam Title
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Score)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @ViewBag.UserName
+            </td>
+            <td>
+                @ViewBag.ExamTitle
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Score)
+            </td>
+            <td>
+                    @Html.ActionLink("Details", "ViewResult", new { AnswerId = item.AnswerId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

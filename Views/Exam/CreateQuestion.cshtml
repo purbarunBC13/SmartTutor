@@ -1,0 +1,45 @@
+﻿@model SmartTutor.Models.Question
+
+@{
+    ViewData["Title"] = "Create Question";
+}
+
+<h2>Create a New Question</h2>
+
+<form asp-action="CreateQuestion" method="post">
+    <input type="hidden" asp-for="ExamId" />
+
+    <div class="form-group">
+        <label asp-for="QuestionText"></label>
+        <textarea class="form-control" asp-for="QuestionText" rows="3"></textarea>
+        <span asp-validation-for="QuestionText" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Options</label>
+        <input type="text" class="form-control mb-2" asp-for="Options[0]" placeholder="Option 1" />
+        <input type="text" class="form-control mb-2" asp-for="Options[1]" placeholder="Option 2" />
+        <input type="text" class="form-control mb-2" asp-for="Options[2]" placeholder="Option 3" />
+        <input type="text" class="form-control mb-2" asp-for="Options[3]" placeholder="Option 4" />
+        <span asp-validation-for="Options" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="CorrectOptionId">Correct Option (0-3)</label>
+        <input type="number" class="form-control" asp-for="CorrectOptionId" min="0" max="3" />
+        <span asp-validation-for="CorrectOptionId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary" name="action" value="add">Add Another Question</button>
+    <button type="submit" class="btn btn-secondary" name="action" value="finish">Finish</button>
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success mt-3">@ViewBag.Message</div>
+}
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SmartTutor.Models.Exam>
+
+@{
+    ViewData["Title"] = "View Exams";
+}
+
+<h1>View Exams</h1>
+
+@if (!Model.Any())
+{
+    <p>No exams found.</p>
+}
+else
+{
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                Exam Details
+            </div>
+            <div class="card-body">
+                <div class="d-flex flex-wrap">
+                    @foreach (var exam in Model)
+                    {
+                        <div class="card mb-2" style="flex: 1 1 calc(33.333% - 20px); margin: 10px; height: 300px; display: flex; flex-direction: column;">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title">@exam.Title</h5>
+                                <div class="bg-light border border-1 mb-2" style="flex-grow: 1; overflow-y: auto; height: 100px;">
+                                    <p class="card-text">@exam.Description</p>
+                                </div>
+                                <p class="card-text">@exam.Duration</p>
+                                <a asp-action="StartExam" asp-route-id="@exam.ExamId" class="btn btn-primary mt-auto">Start Exam</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<a asp-action="Index">Back to List</a>

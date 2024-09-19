@@ -1,0 +1,38 @@
+﻿@model SmartTutor.Models.Exam
+
+@{
+    ViewData["Title"] = "Create Exam";
+}
+
+<h2>Create a New Exam</h2>
+
+<form asp-action="CreateExam" method="post">
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input type="text" class="form-control" asp-for="Title" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea class="form-control" asp-for="Description" rows="3"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Duration"></label>
+        <input type="time" class="form-control" asp-for="Duration" />
+        <span asp-validation-for="Duration" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Exam</button>
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success mt-3">@ViewBag.Message</div>
+}
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

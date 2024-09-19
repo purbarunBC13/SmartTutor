@@ -1,0 +1,85 @@
+﻿@model SmartTutor.Models.User
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <style>
+        .container {
+            margin-top: 20px;
+        }
+
+        .profile-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+
+        <!-- User Profile Card -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <img src="https://www.w3schools.com/w3images/avatar2.png" alt="Profile Image" class="profile-img img-thumbnail" />
+                        <h5 class="card-title mt-2">@Model.Name</h5>
+                        <p class="card-text">@Model.Email</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Details Card -->
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        Student Details
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-3">
+                                @Html.DisplayNameFor(model => model.Name)
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.Name)
+                            </dd>
+                            <dt class="col-sm-3">
+                                @Html.DisplayNameFor(model => model.Email)
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.Email)
+                            </dd>
+                            <dt class="col-sm-3">
+                                @Html.DisplayNameFor(model => model.Username)
+                            </dt>
+                            <dd class="col-sm-9">
+                                @Html.DisplayFor(model => model.Username)
+                            </dd>
+                        </dl>
+                        <!-- Header with Logout Button -->
+
+                        <a asp-action="Logout" class="btn btn-danger">Logout</a>
+                        <a asp-action="Dashboard" class="btn btn-secondary">Back to List</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</body>
+</html>
